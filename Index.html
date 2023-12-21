@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to My World</title>
+    <style>
+        body {
+            background-color: black;
+            color: red;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+        .login-link {
+            color: red;
+            font-size: 18px;
+            text-decoration: none;
+        }
+        .error-message {
+            color: red;
+            font-size: 24px;
+        }
+        .success-message {
+            color: yellow;
+            font-size: 20px;
+        }
+        .math-problem-container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to My World</h1>
+
+    <!-- Login Section -->
+    <p><a href="#" class="login-link" onclick="showLogin()">Click here to login</a></p>
+
+    <!-- Login Form (Initially Hidden) -->
+    <div id="loginForm" style="display: none;">
+        <form onsubmit="return validateLogin()">
+            <label for="id">ID (Hint: Your First Name):</label>
+            <input type="text" id="id" name="id" required><br>
+
+            <label for="password">Password (Hint: Your DOB - DDMMYYYY):</label>
+            <input type="password" id="password" name="password" required><br>
+
+            <button type="submit">Login</button>
+        </form>
+        <p id="errorMessage" class="error-message"></p>
+    </div>
+
+    <!-- Math Problem Section (Initially Hidden) -->
+    <div id="mathProblemContainer" class="math-problem-container">
+        <h2>Solve the Math Problem!</h2>
+        <p>if 5+10=15<br>
+           6+10=20<br>
+           7+10=25<br>
+           What is 8+10=?</p>
+        <input type="number" id="mathAnswer" required>
+        <button onclick="solveMathProblem()">Submit Answer</button>
+    </div>
+
+    <!-- Success Message (Initially Hidden) -->
+    <div id="successMessage" style="display: none;">
+        <p class="success-message">Congratulations, Sunaina! 🎉 Please collect your gift from your best friend. 😁</p>
+    </div>
+
+    <script>
+        function showLogin() {
+            document.getElementById("loginForm").style.display = "block";
+        }
+
+        function validateLogin() {
+            var enteredId = document.getElementById("id").value;
+            var enteredPassword = document.getElementById("password").value;
+
+            // Check if ID and Password are correct
+            if (enteredId.toUpperCase() === "SUNAINA" && enteredPassword === "04122000") {
+                document.getElementById("loginForm").style.display = "none";
+                document.getElementById("mathProblemContainer").style.display = "block";
+                return false; // To prevent form submission
+            } else {
+                document.getElementById("errorMessage").innerHTML = "प्रवेश निषेध"; // Display error message
+                return false; // To prevent form submission
+            }
+        }
+
+        function solveMathProblem() {
+            var userAnswer = document.getElementById("mathAnswer").value;
+
+            // Check if the math problem is solved correctly
+            if (userAnswer === "18") {
+                // Display the success message
+                document.getElementById("mathProblemContainer").style.display = "none";
+                document.getElementById("successMessage").style.display = "block";
+            } else {z
+                alert("आपका जवाब गलत है"); // Display error message
+            }
+        }
+    </script>
+</body>
+</html>
